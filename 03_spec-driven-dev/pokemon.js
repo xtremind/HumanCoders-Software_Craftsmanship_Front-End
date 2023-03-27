@@ -6,6 +6,7 @@ class Pokemon {
     this.name = name;
     this.health = health;
     this.initial_speed = initial_speed;
+    this.atk = 1;
     this.level = 1;
     this.generation = 1;
   }
