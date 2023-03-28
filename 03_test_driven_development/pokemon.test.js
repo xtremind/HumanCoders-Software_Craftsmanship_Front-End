@@ -40,13 +40,27 @@ function attack(attacker, defender){
 }
 
 function coeficientpower(atk_type, def_type){
-  if (atk_type === Type.FIRE && def_type === Type.PLANT) {
+  if (isEffective(atk_type, def_type)) {
     return 2;
   }
-  if (atk_type === Type.PLANT && def_type === Type.FIRE) {
+  if (isIneffective(atk_type, def_type)) {
     return 0.5;
   }
   return 1;
+}
+
+function isEffective(atk_type, def_type){
+  return  (atk_type === Type.FIRE && def_type === Type.PLANT) || 
+          (atk_type === Type.PLANT && def_type === Type.WATER) ||
+          (atk_type === Type.WATER && def_type === Type.FIRE) ||
+          (atk_type === Type.LIGHTNING && def_type === Type.WATER)
+}
+
+function isIneffective(atk_type, def_type){
+  return  (atk_type === Type.PLANT && def_type === Type.FIRE) || 
+          (atk_type === Type.WATER && def_type === Type.PLANT) ||
+          (atk_type === Type.FIRE && def_type === Type.WATER) ||
+          (atk_type === Type.WATER && def_type === Type.LIGHTNING)
 }
 
 describe('pokemon battle', () => {
